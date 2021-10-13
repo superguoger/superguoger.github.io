@@ -1,1 +1,105 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="shortcut icon" href="/favicon.ico"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="//at.alicdn.com/t/font_959701_zmz56ik0lvb.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css"><title>guoger主页</title><link href="/static/css/main.5e4157e2.chunk.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script><script>!function(l){function e(e){for(var r,t,n=e[0],o=e[1],u=e[2],f=0,i=[];f<n.length;f++)t=n[f],p[t]&&i.push(p[t][0]),p[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(l[r]=o[r]);for(s&&s(e);i.length;)i.shift()();return c.push.apply(c,u||[]),a()}function a(){for(var e,r=0;r<c.length;r++){for(var t=c[r],n=!0,o=1;o<t.length;o++){var u=t[o];0!==p[u]&&(n=!1)}n&&(c.splice(r--,1),e=f(f.s=t[0]))}return e}var t={},p={2:0},c=[];function f(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return l[e].call(r.exports,r,r.exports,f),r.l=!0,r.exports}f.m=l,f.c=t,f.d=function(e,r,t){f.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},f.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},f.t=function(r,e){if(1&e&&(r=f(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(f.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var n in r)f.d(t,n,function(e){return r[e]}.bind(null,n));return t},f.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return f.d(r,"a",r),r},f.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},f.p="/";var r=window.webpackJsonp=window.webpackJsonp||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o<r.length;o++)e(r[o]);var s=n;a()}([])</script><script src="/static/js/1.fabea407.chunk.js"></script><script src="/static/js/main.90455096.chunk.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script charset="UTF-8" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script charset="UTF-8" src="http://fund.eastmoney.com/js/fundcode_search.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <title>相国基金查看平台</title>
+</head>
+<style>
+    .xg-body{
+        padding: 20px
+    }
+    .row, .list-group{
+        padding: 20px 0
+    }
+</style>
+<body class="xg-body">
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active">	<a href="#home" data-toggle="tab">基金</a></li>
+        <li role="presentation" ><a href="#slist" data-toggle="tab">添加</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+            <div class="list-group" id="searchList1"> </div>
+        </div>
+        <div class="tab-pane fade" id="slist">
+            <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-group">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" id="searchClick">搜索</button>
+                    </span>
+                  </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+            <div class="list-group" id="searchList"> </div>
+        </div>
+    </div>
+    <script>
+             $(document).ready(function () {
+                var catcheInitData =  localStorage.getItem("catcheData");
+                var catcheInitDataArr = []
+                if (catcheInitData) {
+                    catcheInitDataArr = catcheInitData.split('||')
+                    var addHtml1 = ''
+                    for (let index = 0; index < catcheInitDataArr.length; index++) {
+                        const element = catcheInitDataArr[index].split(',')
+                        addHtml1 += '<li class="list-group-item">' +
+                            element[index][0] + '&nbsp&nbsp&nbsp' + element[index][1]+ '&nbsp&nbsp&nbsp' + element[index][2]+ '&nbsp&nbsp&nbsp' +element[index][3]+ '&nbsp&nbsp&nbsp' +element[index][4] +
+                        '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button fund='+ element[index] +'  type="button" class="btn btn-sm btn-primary">取消关注</button></li>'
+                    }
+                    $("#searchList1").html(addHtml1);
+                }
+                $("#searchClick").click(function () {
+                    var searchData = $('#searchInput').val()
+                    if (searchData) {
+                       const  fundList = r.filter((el) => {
+                           if(el[2].indexOf(searchData) > -1) {
+                            return el
+                           }
+                       })
+                       var addHtml = ''
+                       for (let index = 0; index < fundList.length; index++) {
+                         addHtml += '<li class="list-group-item">' +
+                            fundList[index][0] + '&nbsp&nbsp&nbsp' + fundList[index][1]+ '&nbsp&nbsp&nbsp' + fundList[index][2]+ '&nbsp&nbsp&nbsp' +fundList[index][3]+ '&nbsp&nbsp&nbsp' +fundList[index][4] +
+                        '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button fund='+ fundList[index] +'  type="button" class="btn btn-sm btn-primary">添加关注</button></li>'
+                       }
+                       $("#searchList").html(addHtml);
+                    }
+                })
+                $("#searchList").on("click",".btn", function() {
+                 
+                    var catcheData =  localStorage.getItem("catcheData");
+                    if (catcheData) {
+                        if (catcheData.indexOf($(this).attr("fund")) === -1) {
+                           catcheData += '||' + $(this).attr("fund")
+                        }
+                    } else {
+                        catcheData = $(this).attr("fund")
+                    }
+                    localStorage.setItem("catcheData", catcheData);
+                })
+                    //   $.ajax({
+                    //     url: "http://fund.eastmoney.com/js/fundcode_search.js",
+                    //     type: "GET",
+                    //     dataType: "jsonp", //指定服务器返回的数据类型
+                    //     jsonpCallback: "r",  //指定回调函数名称
+                    //     success: function (data) {
+                    //         console.log(data)
+                    //         //   var result = JSON.stringify(data); //json对象转成字符串
+                            
+                    //     }
+                    //   });
+              });
+          </script>
+    </body>
+</html>
